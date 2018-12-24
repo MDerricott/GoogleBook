@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Mern Demo",
   "main": "server.js",
-  "seed": "node scripts/seedDB.js",
+  
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -11,6 +11,7 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
+    "seed": "node scripts/seedDB.js",
     "heroku-postbuild": "npm run build"
   },
   "author": "",
