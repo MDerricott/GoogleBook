@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks" , { useNewUrlParser: true });
 // Define API routes here
 
 // Send every other request to the React app

@@ -1,8 +1,9 @@
 {
-  "name": "mern",
+  "name": "googlebooks",
   "version": "1.0.0",
   "description": "Mern Demo",
   "main": "server.js",
+  "seed": "node scripts/seedDB.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -21,6 +22,9 @@
   "dependencies": {
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-    "mongoose": "^5.4.0"
+    "mongoose": "^5.4.0",
+    "path": "^0.12.7",
+    "react-router-dom": "^4.3.1",
+    "yarn-react-webpack-seed": "^0.9.4"
   }
 }
