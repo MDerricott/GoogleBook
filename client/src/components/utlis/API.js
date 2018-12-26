@@ -18,8 +18,9 @@ export default {
     return axios.post("/api/books", bookData);
   },
   googleSearch: function(query) {
-    return axios.get("/api/google", { params: { q: query } });
+    return axios.get("/api/google", {params: {q: query}});
   }
+  
 
 };
 

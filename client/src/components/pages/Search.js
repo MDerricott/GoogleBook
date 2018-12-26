@@ -8,12 +8,17 @@ import ResultList from "../ResultList";
 class GoogleBooks extends Component {
 state = {
  books: [],
- searchTerm: ""
+ searchTerm: " ",
+ bookdata: {
+   title: ""
+ }
 };
 
 componentDidMount() {
-  this.googleBooks("bluest eye");
+  this.googleBooks("");
 }
+
+
 
 googleBooks = (query) => {
   API.googleSearch(query)
@@ -22,15 +27,18 @@ googleBooks = (query) => {
       console.log(res.data)
       this.setState({ 
           books: res.data, 
-          title: res.data[0].volumeInfo.title, 
-          author: res.data[0].volumeInfo.authors[0], 
-          description: res.data[0].volumeInfo.description
+          // title: res.data[0].volumeInfo.title, 
+          // author: res.data[0].volumeInfo.authors[0], 
+          // description: res.data[0].volumeInfo.description
       })
+      console.log(this.state)
     }
     )
     .catch(err => console.log(err));
   
 };
+
+
 
 handleInputChange = event => {
   const name = event.target.name;
@@ -38,31 +46,62 @@ handleInputChange = event => {
   this.setState({
     [name]: value
   });
-  
+  console.log(this.state.searchTerm)
 };
 
 handleFormSubmit = event => {
   event.preventDefault();
     this.googleBooks(this.state.searchTerm);
 }
+
+
+
+
+// handleInputChange = event => {
+//   // const name = event.target.name;
+//   const value = event.target.value;
+
+//   const newState = {...this.state}
+
+//   newState.searchTerm = value
+// console.log(newState)
+//   this.setState(newState)
+//  console.log(this.state)
+// };
+
+// handleFormSubmit = event => {
+//   event.preventDefault();
+//     this.googleBooks(this.state.searchTerm);
+
+// };
+
+handleSaveSubmit = event => {
+  event.preventDefault();
+  const bookDataId = event.target.id
+  const newBook = this.googleBooks(bookDataId)
+  console.log(newBook);
+
+
+  console.log("clicked")
+
+
+};
 render() {
   return (
     <div>This is where you google books
    
-    <br/>
-   Title: {this.state.title}
-   <br/>
-   Author: {this.state.author}
-   <br/>
-   Description: {this.state.description}
-<br />
+  
 <Form 
 searchTerm = {this.state.searchTerm}
 handleFormSubmit={this.handleFormSubmit}
 handleInputChange={this.handleInputChange}
 />
 
-<ResultList results={this.state.books}v/>
+
+<br />
+<br />
+
+<ResultList results={this.state.books}  handleSaveSubmit={this.handleSaveSubmit}/>
 
 
     </div>

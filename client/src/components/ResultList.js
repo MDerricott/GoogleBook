@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button"
+// import Button from "./Button"
 
 function ResultList(props) {
   return (
@@ -14,7 +14,9 @@ function ResultList(props) {
           Description: {result.volumeInfo.description}
             <br />
            Image: <img src={result.volumeInfo.imageLinks.thumbnail} alt={result.volumeInfo.title}/>
-          <Button> Save Book </Button>
+           <button onClick={props.handleSaveSubmit} id={result.id} >
+      Save
+    </button>
           </div>
 
       ))}
