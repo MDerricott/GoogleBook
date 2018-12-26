@@ -5,7 +5,8 @@ import API from "../utlis/API";
 
 class GoogleBooks extends Component {
 state = {
- books: []
+ books: [],
+ searchTerm: "bluest eye"
 };
 
 componentDidMount() {
@@ -13,7 +14,7 @@ componentDidMount() {
 }
 
 googleBooks = () => {
-  API.googleSearch()
+  API.googleSearch(this.state.searchTerm)
     .then(res => {
       console.log("load books");
       console.log(res.data)
@@ -42,3 +43,5 @@ render() {
  
 };
 export default GoogleBooks;
+
+

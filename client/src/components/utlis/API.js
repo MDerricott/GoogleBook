@@ -17,8 +17,11 @@ export default {
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
   },
-  googleSearch: function() {
-    return axios.get("/api/google");
+  googleSearch: function(query) {
+    return axios.get("/api/google", { params: { q: query } });
   }
 
 };
+
+// { params: { q: query } }
+
