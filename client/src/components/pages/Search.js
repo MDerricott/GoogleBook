@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import API from "../utlis/API";
+import { timingSafeEqual } from "crypto";
 
 
 
 class GoogleBooks extends Component {
 state = {
  books: [],
- searchTerm: "bluest eye"
+ searchTerm: "black"
 };
 
 componentDidMount() {
@@ -20,9 +21,9 @@ googleBooks = () => {
       console.log(res.data)
       this.setState({ 
           books: res.data, 
-      //     title: "", 
-      //     author: "", 
-      //     description: "" 
+          title: res.data[0].volumeInfo.title, 
+          author: res.data[0].volumeInfo.authors[0], 
+          description: res.data[0].volumeInfo.description
       })
     }
     )
@@ -34,6 +35,12 @@ render() {
   return (
     <div>This is where you goole books
     {console.log(this.state)}
+    <br/>
+   Title: {this.state.title}
+   <br/>
+   Author: {this.state.author}
+   <br/>
+   Description: {this.state.description}
 
     </div>
   );
