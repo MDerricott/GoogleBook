@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import API from "../utlis/API";
-import { timingSafeEqual } from "crypto";
+import Form from "../Form";
+import ResultList from "../ResultList";
 
 
 
 class GoogleBooks extends Component {
 state = {
  books: [],
- searchTerm: "black"
+ searchTerm: ""
 };
 
 componentDidMount() {
-  this.googleBooks();
+  this.googleBooks("bluest eye");
 }
 
-googleBooks = () => {
-  API.googleSearch(this.state.searchTerm)
+googleBooks = (query) => {
+  API.googleSearch(query)
     .then(res => {
       console.log("load books");
       console.log(res.data)
@@ -28,19 +29,41 @@ googleBooks = () => {
     }
     )
     .catch(err => console.log(err));
-    
+  
 };
 
+handleInputChange = event => {
+  const name = event.target.name;
+  const value = event.target.value;
+  this.setState({
+    [name]: value
+  });
+  
+};
+
+handleFormSubmit = event => {
+  event.preventDefault();
+    this.googleBooks(this.state.searchTerm);
+}
 render() {
   return (
-    <div>This is where you goole books
-    {console.log(this.state)}
+    <div>This is where you google books
+   
     <br/>
    Title: {this.state.title}
    <br/>
    Author: {this.state.author}
    <br/>
    Description: {this.state.description}
+<br />
+<Form 
+searchTerm = {this.state.searchTerm}
+handleFormSubmit={this.handleFormSubmit}
+handleInputChange={this.handleInputChange}
+/>
+
+<ResultList results={this.state.books}v/>
+
 
     </div>
   );
