@@ -10,7 +10,12 @@ state = {
  books: [],
  searchTerm: " ",
  bookdata: {
-   title: ""
+   title: "",
+   author: "",
+   description: "",
+   image: "",
+   link: ""
+
  }
 };
 
@@ -38,6 +43,29 @@ googleBooks = (query) => {
   
 };
 
+googleABook = (query) => {
+  API.googleSearch(query)
+    .then(res => {
+      console.log("load books");
+
+      this.setState({bookdata: {
+        title: res.data[0].volumeInfo.title,
+        author: res.data[0].volumeInfo.authors[0],
+        description: res.data[0].volumeInfo.description,
+        image: res.data[0].volumeInfo.imageLinks.thumbnail,
+        link: res.data[0].volumeInfo.previewLink
+      }})
+      
+
+      API.saveBook(this.state.bookdata)
+      .then(res => {
+        console.log(res.data)
+      })
+    }
+    )
+    .catch(err => console.log(err));
+  
+};
 
 
 handleInputChange = event => {
@@ -57,33 +85,11 @@ handleFormSubmit = event => {
 
 
 
-// handleInputChange = event => {
-//   // const name = event.target.name;
-//   const value = event.target.value;
-
-//   const newState = {...this.state}
-
-//   newState.searchTerm = value
-// console.log(newState)
-//   this.setState(newState)
-//  console.log(this.state)
-// };
-
-// handleFormSubmit = event => {
-//   event.preventDefault();
-//     this.googleBooks(this.state.searchTerm);
-
-// };
 
 handleSaveSubmit = event => {
   event.preventDefault();
   const bookDataId = event.target.id
-  const newBook = this.googleBooks(bookDataId)
-  console.log(newBook);
-
-
-  console.log("clicked")
-
+  this.googleABook(bookDataId)
 
 };
 render() {
