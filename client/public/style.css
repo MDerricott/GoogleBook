@@ -9,4 +9,10 @@
 
 .cardresults{
     border: 10px
+    
+}
+
+
+.disabled{
+    color: "disabled";
 }

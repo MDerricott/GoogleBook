@@ -42,7 +42,7 @@ googleBooks = (query) => {
       console.log(this.state)
     }
     )
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
   
 };
 
@@ -68,7 +68,7 @@ googleABook = (query) => {
       })
     }
     )
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
   
 };
 
@@ -76,6 +76,7 @@ googleABook = (query) => {
 handleInputChange = event => {
   const name = event.target.name;
   const value = event.target.value;
+  console.log(value)
   this.setState({
     [name]: value
   });
@@ -83,13 +84,15 @@ handleInputChange = event => {
 };
 
 handleFormSubmit = event => {
+
   event.preventDefault();
+  console.log("clicked")
     this.googleBooks(this.state.searchTerm);
 }
 
-disabled = (event) => {
-  event.target.parentNode.parentNode.parentNode.setAttribute("disabled",true)
-}
+// disabled = (event) => {
+//   event.target.parentNode.parentNode.parentNode.setAttribute("color","disabled")
+// }
   // this.setState({
   //   [name]: value
   // });
@@ -100,8 +103,9 @@ disabled = (event) => {
 handleSaveSubmit = event => {
   event.preventDefault();
   const bookDataId = event.target.id;
+  event.target.setAttribute("fill","red")
 
-  this.disabled(event)
+  // this.disabled(event)
   
   this.googleABook(bookDataId)
  

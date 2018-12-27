@@ -83,19 +83,4 @@ function ResultList(props) {
 export default ResultList;
 
 
-
-//          <div key={result.id} id={result.id}> 
-
-// Title: {result.volumeInfo.title}
-// <br/>
-// Author: {result.volumeInfo.authors} 
-// <br/>
-// Description: {result.volumeInfo.description}
-// <br />
-// Image: <img src={result.volumeInfo.imageLinks.thumbnail} alt={result.volumeInfo.title}/>
-// <button onClick={props.handleSaveSubmit} id={result.id} >
-// Save
-// </button>
-// </div>
-      
       
