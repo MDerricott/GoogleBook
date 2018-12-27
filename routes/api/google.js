@@ -6,7 +6,7 @@ router.route("/").get(
   axios
     .get("https://www.googleapis.com/books/v1/volumes", { params: req.query })
     .then((data) => res.json(data.data.items))
-    .catch(err => {res.status(422).json(err); console.log(err)});
+    .catch(err => res.status(422).json(err));
 
 
 });
