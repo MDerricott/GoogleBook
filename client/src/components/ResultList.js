@@ -1,28 +1,16 @@
 import React from "react";
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import classnames from 'classnames';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-// import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-// import red from '@material-ui/core/colors/red';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FavButton from './FavButton'
-// import Button from "./Button"
 import Grid from '@material-ui/core/Grid';
 import pink from '@material-ui/core/colors/pink';
 import green from '@material-ui/core/colors/green';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   avatar: {
@@ -40,9 +28,6 @@ const styles = {
   },
 };
 
-
-
-
 function ResultList(props) {
   const { classes } = props;
   return (
@@ -59,8 +44,8 @@ function ResultList(props) {
           avatar={
             <Avatar aria-label="Book" className={classes.avatar}>
              <i className="material-icons" color="action">
-collections_bookmark
-</i>
+                  collections_bookmark
+            </i>
             </Avatar>
           }
           title={result.volumeInfo.title}
@@ -73,22 +58,21 @@ collections_bookmark
           }
         />
 
-
         <CardContent>
        
           <Typography component="p">
           
           {result.volumeInfo.description}
+          <Button size="small" color="primary" href={result.volumeInfo.previewLink}>
+                    Preview the Book
+                </Button>
+     
           </Typography>
         </CardContent>
         </Grid>
-        {/* <CardActions > */}
          <Grid container>
-            {/* <FavoriteIcon onClick={props.handleSaveSubmit} id={result.id} /> */}
-            
-       
             </Grid>
-          {/* </CardActions> */}
+      
           </Grid>
           </Card>
            <br>

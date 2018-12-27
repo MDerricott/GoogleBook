@@ -2,10 +2,7 @@ import React from "react";
 import DeleteButton from "./DeleteButton"
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-// import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-// import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -13,10 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import pink from '@material-ui/core/colors/pink';
 import green from '@material-ui/core/colors/green';
 import { withStyles } from '@material-ui/core/styles';
-
-
-// import Button from "./Button"
-
+import Button from '@material-ui/core/Button';
 
 
 const styles = {
@@ -52,16 +46,18 @@ function ResultList(props) {
                     <img src={result.image} alt={result.title} className="saved-image"/>
                 </Grid>
             <Grid item sm={12} md={9}>
-            <CardHeader
-                    avatar={
+            <CardHeader 
+                     avatar={
                      <Avatar aria-label="Saved" className={classes.pinkAvatar}>
                         <i className="material-icons">
                             favorite_border
                         </i>
                     </Avatar>
                     }
-                title={ <a href={result.link}>{result.title}</a>}
+                 
+                title={<h2>{result.title}</h2>}
                 subheader= {result.author} 
+                
 
             action={
                 <IconButton >
@@ -71,16 +67,20 @@ function ResultList(props) {
 
         <CardContent>
              <Typography component="p">
-                {result.description}
+                {result.description} 
+                <br>
+                </br>
+                <Button size="small" color="primary" href={result.link}>
+                    Preview the Book
+                </Button>
             </Typography>
         </CardContent>
         </Grid>
         <Grid container>
-            {/* <FavoriteIcon onClick={props.handleSaveSubmit} id={result.id} /> */}
+        
             
        
             </Grid>
-          {/* </CardActions> */}
           </Grid>
        </Card>
         <br>

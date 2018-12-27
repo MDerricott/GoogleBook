@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-// import DeleteBtn from "../components/DeleteBtn";
-// import Jumbotron from "../components/Jumbotron";
 import API from "../utlis/API";
 import SavedList from "../SavedResults";
-// import Grid from '@material-ui/core/Grid';
 import Wrapper from '../Wrapper';
-
-// import { Link } from "react-router-dom";
-// import { Col, Row, Container } from "../components/Grid";
-// import { List, ListItem } from "../components/List";
-// import { Input, TextArea, FormBtn } from "../components/Form";
+import Grid from '@material-ui/core/Grid';
 
 class Books extends Component {
   state = {
@@ -44,12 +37,6 @@ removeElement = (elementId) => {
 }
 
 
-//   function removeElement(elementId) {
-//     // Removes an element from the document
-//     var element = document.getElementById(elementId);
-//     element.parentNode.removeChild(element);
-// }
-
 handleDelete = (event) => {
   event.preventDefault();
   const bookDataId = event.target.id;
@@ -76,10 +63,10 @@ delete = (id) => {
   render() {
     return (
       <Wrapper>
-   
+   <Grid container style={{height: "100px"}}  justify="center"><h1>Favorited Books</h1></Grid>
 
 
-        Books
+        
        <div id="booklist">
           <SavedList results={this.state.books} handleDelete={this.handleDelete}/>
        

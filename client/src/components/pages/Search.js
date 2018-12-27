@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import API from "../utlis/API";
-
 import ResultList from "../ResultList";
-
 import Wrapper from '../Wrapper';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import SearchButton from '../SearchButton';
 import IconButton from '@material-ui/core/IconButton';
+
 
 
 
@@ -48,9 +47,6 @@ googleBooks = (query) => {
  
       this.setState({ 
           books: res.data, 
-          // title: res.data[0].volumeInfo.title, 
-          // author: res.data[0].volumeInfo.authors[0], 
-          // description: res.data[0].volumeInfo.description
       })
       console.log(this.state)
     }
@@ -104,29 +100,13 @@ handleFormSubmit = event => {
     
 }
 
-// disabled = (event) => {
-//   event.target.parentNode.parentNode.parentNode.setAttribute("color","disabled")
-// }
-  // this.setState({
-  //   [name]: value
-  // });
-
-  // console.log(event.target.parentNode.parentNode.parentNode.setAttribute("disabled", "disabled"))
-
 
 handleSaveSubmit = event => {
   event.preventDefault();
   console.log("clicked")
   const bookDataId = event.target.id;
-  // console.log(event.target.childNode)
-  // console.log(bookDataId)
   event.target.setAttribute("fill","red")
-
- 
-  
   this.googleABook(bookDataId)
- 
-
 
 };
 render() {
@@ -134,7 +114,7 @@ render() {
 
     <Wrapper>
   
-  <Grid container justify="center">
+  <Grid container justify="center" className="form-background" style={{"height": "100px", "padding":"20px"}}>
     <FormControl>
         <InputLabel htmlFor="input-with-icon-adornment">Search for a Book</InputLabel>
         
@@ -144,9 +124,7 @@ render() {
               value={this.state.searchTerm}
               name="searchTerm"
               type="text"
-              // className="form-control"
               id="search"
-              // className={classes.input}
               inputProps={{
                 'aria-label': 'Description',
               }}
