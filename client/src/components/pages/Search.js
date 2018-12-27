@@ -1,27 +1,40 @@
 import React, { Component } from "react";
 import API from "../utlis/API";
-import Form from "../Form";
+
 import ResultList from "../ResultList";
-import Grid from '@material-ui/core/Grid';
+
 import Wrapper from '../Wrapper';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import SearchButton from '../SearchButton';
+import IconButton from '@material-ui/core/IconButton';
 
 
 
 
 class GoogleBooks extends Component {
-state = {
- books: [],
- searchTerm: " ",
- bookdata: {
-   title: "",
-   author: "",
-   description: "",
-   image: "",
-   link: "",
-   buttonState: "",
- },
- buttonState: false
-};
+
+
+   constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+      searchTerm: " ",
+      bookdata: {
+        title: "",
+        author: "",
+        description: "",
+        image: "",
+        link: "",
+      },
+     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);}
+
 
 componentDidMount() {
   this.googleBooks("");
@@ -88,6 +101,7 @@ handleFormSubmit = event => {
   event.preventDefault();
   console.log("clicked")
     this.googleBooks(this.state.searchTerm);
+    
 }
 
 // disabled = (event) => {
@@ -102,10 +116,13 @@ handleFormSubmit = event => {
 
 handleSaveSubmit = event => {
   event.preventDefault();
+  console.log("clicked")
   const bookDataId = event.target.id;
+  // console.log(event.target.childNode)
+  // console.log(bookDataId)
   event.target.setAttribute("fill","red")
 
-  // this.disabled(event)
+ 
   
   this.googleABook(bookDataId)
  
@@ -117,13 +134,34 @@ render() {
 
     <Wrapper>
   
-   
-  
-<Form 
-searchTerm = {this.state.searchTerm}
-handleFormSubmit={this.handleFormSubmit}
-handleInputChange={this.handleInputChange}
-/>
+  <Grid container justify="center">
+    <FormControl>
+        <InputLabel htmlFor="input-with-icon-adornment">Search for a Book</InputLabel>
+        
+              <Input
+            
+              onChange={this.handleInputChange}
+              value={this.state.searchTerm}
+              name="searchTerm"
+              type="text"
+              // className="form-control"
+              id="search"
+              // className={classes.input}
+              inputProps={{
+                'aria-label': 'Description',
+              }}
+              endAdornment={
+                <InputAdornment position="end">
+                   <IconButton onClick={this.handleFormSubmit}>
+                      <SearchButton />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+
+      </FormControl>
+      </Grid>
+    
 
 
 <br />

@@ -31,15 +31,6 @@ const styles = theme => ({
 
 function SearchCard(props) {
 
-// class RecipeReviewCard extends React.Component {
-  // state = { expanded: false };
-
-  // handleExpandClick = () => {
-  //   this.setState(state => ({ expanded: !state.expanded }));
-  // };
-
-  
-    // const { classes } = this.props;
 
     return (
       <div>

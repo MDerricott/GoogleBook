@@ -9,43 +9,55 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-// import red from '@material-ui/core/colors/red';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-// import Button from "./Button"
 import Grid from '@material-ui/core/Grid';
+import pink from '@material-ui/core/colors/pink';
+import green from '@material-ui/core/colors/green';
+import { withStyles } from '@material-ui/core/styles';
 
 
 // import Button from "./Button"
 
 
 
+const styles = {
+    avatar: {
+      margin: 10,
+    },
+    pinkAvatar: {
+      margin: 10,
+      color: '#fff',
+      backgroundColor: pink[500],
+    },
+    greenAvatar: {
+      margin: 10,
+      color: '#fff',
+      backgroundColor: green[500],
+    },
+  };
 
 
 
 
 function ResultList(props) {
 
-
-
-
+    
+      const { classes } = props;
   return (
       <div>
       {props.results.map(result => (
            <div key={result._id}>
      <Card className="cardresults"  key={result.id} id={result._id}>
      <Grid container justify="center" spacing={8}>
-                 <Grid item xs={2}  >     
+                 <Grid item sm={12} md={3}  >     
                     <img src={result.image} alt={result.title} className="saved-image"/>
                 </Grid>
-            <Grid item xs={10}>
+            <Grid item sm={12} md={9}>
             <CardHeader
                     avatar={
-                     <Avatar aria-label="Saved">
-                         S
+                     <Avatar aria-label="Saved" className={classes.pinkAvatar}>
+                        <i className="material-icons">
+                            favorite_border
+                        </i>
                     </Avatar>
                     }
                 title={ <a href={result.link}>{result.title}</a>}
@@ -80,7 +92,7 @@ function ResultList(props) {
 
       );
     }
-export default ResultList;
+export default withStyles(styles) (ResultList);
 
 
 

@@ -20,33 +20,54 @@ import Typography from '@material-ui/core/Typography';
 import FavButton from './FavButton'
 // import Button from "./Button"
 import Grid from '@material-ui/core/Grid';
+import pink from '@material-ui/core/colors/pink';
+import green from '@material-ui/core/colors/green';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = {
+  avatar: {
+    margin: 10,
+  },
+  pinkAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: pink[500],
+  },
+  greenAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: green[500],
+  },
+};
 
 
 
 
 function ResultList(props) {
+  const { classes } = props;
   return (
    <div>
       {props.results.map(result => (
       <div key={result.id}>
       <Card className="cardresults"  key={result.id} id={result.id}>
       <Grid container justify="center" spacing={8}>
-      <Grid item xs={2}  >
+      <Grid item  sm={12} md={3} >
       <img src={result.volumeInfo.imageLinks.thumbnail} alt={result.volumeInfo.title} className="saved-image"/>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item sm={12} md={9}>
         <CardHeader
           avatar={
-            <Avatar aria-label="Book">
-              B
+            <Avatar aria-label="Book" className={classes.avatar}>
+             <i className="material-icons" color="action">
+collections_bookmark
+</i>
             </Avatar>
           }
           title={result.volumeInfo.title}
           subheader= {result.volumeInfo.authors} 
 
           action={
-            <IconButton disabled={props.disabled} >
+            <IconButton >
               <FavButton handleSaveSubmit={props.handleSaveSubmit} id={result.id} />
             </IconButton>
           }
@@ -80,7 +101,7 @@ function ResultList(props) {
       );
     }
 
-export default ResultList;
+export default withStyles(styles) (ResultList);
 
 
       

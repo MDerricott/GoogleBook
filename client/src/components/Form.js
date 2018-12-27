@@ -1,53 +1,115 @@
-// import React from "react";
 
+import React from 'react';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import SearchButton from './SearchButton';
+import IconButton from '@material-ui/core/IconButton';
 
-// function Form (props) {
- 
-//     return (
-//       <div>
-       
-//         <form className="form">
-//           <input
-//             value={props.searchTerm}
-//             name="searchTerm"
-//             onChange={props.handleInputChange}
-//             type="text"
-//             placeholder="Search Term"
-//           />
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: ''};
     
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    }
+  
+
+    handleInputChange(event) {
+      this.setState({value: event.target.value});
+    }
+  
+    handleFormSubmit(event) {
+      // googleBooks(this.state.searchTerm);
+      event.preventDefault();
+      console.log("clicked")
+    }
+
+  // handleInputChange (event) {
+  //   this.setState({value: event.target.value});
+  //   };
+  
+  // };
+  
+  // handleFormSubmit = event => {
+  
+  //   event.preventDefault();
+  //   console.log("clicked")
+  //     this.googleBooks(this.state.searchTerm);
+  // }
+
+
+  render(){
+    return (
+  
+    <Grid container justify="center">
+    <FormControl>
+        <InputLabel htmlFor="input-with-icon-adornment">Search for a Book</InputLabel>
         
-//           <button onClick={props.handleFormSubmit}>Submit</button>
-//         </form>
-//       </div>
-//     );
+              <Input
+            
+              onChange={this.handleInputChange}
+              value={this.state.searchTerm}
+              name="searchTerm"
+              type="text"
+              // className="form-control"
+              id="search"
+              defaultValue="Search for Books"
+              // className={classes.input}
+              inputProps={{
+                'aria-label': 'Description',
+              }}
+              endAdornment={
+                <InputAdornment position="end">
+                   <IconButton onClick={this.handleFormSubmit}>
+                      <SearchButton />
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+
+      </FormControl>
+      </Grid>
+    )}
+
+            }
+export default Form;
+
+
+
+
+
+// class NameForm extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {value: ''};
+
+//     this.handleInputChange = this.handleInputChange.bind(this);
+//     this.handleSubmit = this.handleSubmit.bind(this);
 //   }
 
+  // handleChange(event) {
+  //   this.setState({value: event.target.value});
+  // }
 
-// export default Form;
+  // handleSubmit(event) {
+  //   alert('A name was submitted: ' + this.state.value);
+  //   event.preventDefault();
+  // }
 
-
-import React from "react";
-
-function Form(props) {
-  return (
-    <form>
-      <div className="form-group">
-        <label htmlFor="search">Search:</label>
-        <input
-          onChange={props.handleInputChange}
-          value={props.searchTerm}
-          name="searchTerm"
-          type="text"
-          className="form-control"
-          placeholder="Search for Books"
-          id="search"
-        />
-        <button onClick={props.handleFormSubmit} className="btn btn-primary mt-3">
-          Search
-        </button>
-      </div>
-    </form>
-  );
-}
-
-export default Form;
+//   render() {
+//     return (
+//       <form onSubmit={this.handleSubmit}>
+//         <label>
+//           Name:
+//           <input type="text" value={this.state.value} onChange={this.handleChange} />
+//         </label>
+//         <input type="submit" value="Submit" />
+//       </form>
+//     );
+//   }
+// }
