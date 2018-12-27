@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import API from "../utlis/API";
 import Form from "../Form";
 import ResultList from "../ResultList";
+import Grid from '@material-ui/core/Grid';
+import Wrapper from '../Wrapper';
+
 
 
 
@@ -14,9 +17,10 @@ state = {
    author: "",
    description: "",
    image: "",
-   link: ""
-
- }
+   link: "",
+   buttonState: "",
+ },
+ buttonState: false
 };
 
 componentDidMount() {
@@ -28,8 +32,7 @@ componentDidMount() {
 googleBooks = (query) => {
   API.googleSearch(query)
     .then(res => {
-      console.log("load books");
-      console.log(res.data)
+ 
       this.setState({ 
           books: res.data, 
           // title: res.data[0].volumeInfo.title, 
@@ -46,14 +49,16 @@ googleBooks = (query) => {
 googleABook = (query) => {
   API.googleSearch(query)
     .then(res => {
-      console.log("load books");
+     
 
       this.setState({bookdata: {
         title: res.data[0].volumeInfo.title,
         author: res.data[0].volumeInfo.authors[0],
         description: res.data[0].volumeInfo.description,
         image: res.data[0].volumeInfo.imageLinks.thumbnail,
-        link: res.data[0].volumeInfo.previewLink
+        link: res.data[0].volumeInfo.previewLink,
+        buttonState: ""
+
       }})
       
 
@@ -74,7 +79,7 @@ handleInputChange = event => {
   this.setState({
     [name]: value
   });
-  console.log(this.state.searchTerm)
+
 };
 
 handleFormSubmit = event => {
@@ -82,19 +87,32 @@ handleFormSubmit = event => {
     this.googleBooks(this.state.searchTerm);
 }
 
+disabled = (event) => {
+  event.target.parentNode.parentNode.parentNode.setAttribute("disabled",true)
+}
+  // this.setState({
+  //   [name]: value
+  // });
 
-
+  // console.log(event.target.parentNode.parentNode.parentNode.setAttribute("disabled", "disabled"))
 
 
 handleSaveSubmit = event => {
   event.preventDefault();
-  const bookDataId = event.target.id
+  const bookDataId = event.target.id;
+
+  this.disabled(event)
+  
   this.googleABook(bookDataId)
+ 
+
 
 };
 render() {
   return (
-    <div>This is where you google books
+
+    <Wrapper>
+  
    
   
 <Form 
@@ -106,11 +124,12 @@ handleInputChange={this.handleInputChange}
 
 <br />
 <br />
+<Grid>
+<ResultList results={this.state.books}  handleSaveSubmit={this.handleSaveSubmit} />
+</Grid>
 
-<ResultList results={this.state.books}  handleSaveSubmit={this.handleSaveSubmit}/>
-
-
-    </div>
+    
+    </Wrapper>
   );
 
 

@@ -3,6 +3,9 @@ import React, { Component } from "react";
 // import Jumbotron from "../components/Jumbotron";
 import API from "../utlis/API";
 import SavedList from "../SavedResults";
+// import Grid from '@material-ui/core/Grid';
+import Wrapper from '../Wrapper';
+
 // import { Link } from "react-router-dom";
 // import { Col, Row, Container } from "../components/Grid";
 // import { List, ListItem } from "../components/List";
@@ -50,6 +53,7 @@ removeElement = (elementId) => {
 handleDelete = (event) => {
   event.preventDefault();
   const bookDataId = event.target.id;
+  console.log(bookDataId)
   this.delete(bookDataId)
   
  
@@ -71,17 +75,18 @@ delete = (id) => {
 
   render() {
     return (
-        <div> 
-        Books
-          {console.log(this.state)}
+      <Wrapper>
+   
 
+
+        Books
        <div id="booklist">
           <SavedList results={this.state.books} handleDelete={this.handleDelete}/>
        
         </div>
-        </div>
        
-//     
+       
+    </Wrapper>
     );
     }
 };

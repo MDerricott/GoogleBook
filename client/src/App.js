@@ -7,20 +7,22 @@ import Search from "./components/pages/Search"
 class App extends Component {
   render() {
     return (
-
+<div>
+<Nav />
 <Router>
-      <div>
-        <Nav />
+     
+        
         <Switch>
           <Route exact path="/" component={Books} />
           {/* <Route exact path="/books" component={Books} /> */}
           <Route exact path="/search" component={Search} />
           {/* <Route component={NoMatch} /> */} */}
         </Switch>
-      </div>
+    
     </Router>
+    </div>
 
-
+  
 
 
       

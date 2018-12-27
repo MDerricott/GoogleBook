@@ -1,7 +1,20 @@
 import React from "react";
+import DeleteButton from "./DeleteButton"
+
+
 // import Button from "./Button"
 
+
+
+
+
+
+
 function ResultList(props) {
+
+
+
+
   return (
       <div>
       {props.results.map(result => (
@@ -14,9 +27,10 @@ function ResultList(props) {
           Description: {result.description}
             <br />
            Image: <img src={result.image} alt={result.title}/>
-           <button onClick={props.handleDelete} id={result._id} >
+           {/* <button onClick={props.handleDelete} id={result._id} >
       Delete
-    </button>
+    </button> */}
+    <DeleteButton handleDelete={props.handleDelete} id={result._id} />
           </div>
 
       ))}
